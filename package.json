@@ -16,7 +16,7 @@
     "css-loader": "^6.6.0",
     "element-ui": "^2.15.6",
     "image-webpack-loader": "^8.1.0",
-    "mini-css-extract-plugin": "^1.6.2",
+    "mini-css-extract-plugin": "1.6.2",
     "postcss-loader": "^6.2.1",
     "style-resources-loader": "^1.5.0",
     "stylus": "^0.56.0",

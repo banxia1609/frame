@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { Button } from 'element-ui';
-import './common/global'
+import './utils/global'
 
 Vue.use(Button)
 

@@ -31,24 +31,24 @@ module.exports = {
     lintOnSave: false, // process.env.NODE_ENV === 'development',//是否开启eslint保存检测 ,它的有效值为 true || false || 'error'
     outputDir: process.env.NODE_ENV === 'production' ? 'build' : 'devbuild', // 打包环境-文件输出的目录名
     productionSourceMap: false, //  是否产生map
-    devServer: { 
+    devServer: { // 服务端设置
         port: 8080, // 端口
         open: false, // 启动项目后自动开启浏览器
-        overlay: {
+        overlay: { // 设置让浏览器 overlay 同时显示警告和错误
           warnings: false,
           errors: false
         },
         // 请求代理
-        // proxy: {
-        //   '/api': {
-        //     target: 'https://mircocloud.com.cn/',
-        //     ws: false,
-        //     changeOrigin: true,
-        //     pathRewrite: {
-        //       '/api': ''
-        //     }
-        //   },
-        // }
+        proxy: {
+          '/api': {
+            target: 'http://0.0.0.0:8085', // 代理地址，这里设置的地址会代替axios中设置的baseURL
+            ws: false, // proxy websockets
+            changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+            pathRewrite: { 
+              '/api': ''
+            }
+          },
+        }
     },
     // 基于环境有条件地配置行为
     configureWebpack: config => {
@@ -73,7 +73,6 @@ module.exports = {
           // 为开发环境修改配置
           config.mode = 'development'
         }
-
         Object.assign(config, {
           // 开发生产共同配置
           resolve: {
@@ -83,7 +82,6 @@ module.exports = {
             }
           }
         })
-        
     },
     // css相关配置
     css: {
@@ -111,11 +109,6 @@ module.exports = {
           automaticNameDelimiter: '~', //缓存组和生成文件名称之间的连接符
           name: true,                  //缓存组里面的filename生效，覆盖默认命名
           cacheGroups: { //缓存组，将所有加载模块放在缓存里面一起分割打包
-            // vendors: {  //自定义打包模块
-            //   test: /[\\/]node_modules[\\/]/,
-            //   priority: -10, //优先级，先打包到哪个组里面，值越大，优先级越高
-            //   filename: 'vendors.js',
-            // },
             default: { //默认打包模块
               priority: -20,
               reuseExistingChunk: true, //模块嵌套引入时，判断是否复用已经被打包的模块
@@ -186,15 +179,15 @@ module.exports = {
         }
 
         //压缩图片
-        //  config.module
-        //   .rule('images')
-        //   .test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
-        //   .use('image-webpack-loader')
-        //     .loader('image-webpack-loader')
-        //     .options({
-        //       bypassOnDebug: true
-        //     })
-        //     .end()
+         config.module
+          .rule('images')
+          .test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
+          .use('image-webpack-loader')
+            .loader('image-webpack-loader')
+            .options({
+              bypassOnDebug: true
+            })
+            .end()
     }
 }
 
