@@ -1,24 +1,44 @@
-# frame
+## 项目简述
 
-## Project setup
+基于 VueCli3.0 + Vue2.0 + elementui 搭建的前端框架
+
+## 环境和依赖
+
+- node
+- yarn
+- webpack
+- @vue/cli ~3
+
+> 请注意，建议使用 [Yarn](https://yarnpkg.com/) 包管理工具
+
+
+## 项目运行和发布
+
+- 安装依赖
+
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+- 开发模式运行
+
 ```
-yarn serve
+yarn start
 ```
 
-### Compiles and minifies for production
+- 编译项目
+
 ```
 yarn build
 ```
 
-### Lints and fixes files
+- 发布项目
+
 ```
-yarn lint
+将编译完成的所有文件，即可部署文件
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 浏览器兼容
+
+Modern browsers and IE10.
+
