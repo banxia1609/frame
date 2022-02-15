@@ -41,13 +41,13 @@ module.exports = {
         // 请求代理
         proxy: {
           '/api': {
-            target: 'http://0.0.0.0:8085', // 代理地址，这里设置的地址会代替axios中设置的baseURL
+            target: process.env.VUE_APP_BASE_URL, // 代理地址，这里设置的地址会代替axios中设置的baseURL
             ws: false, // proxy websockets
             changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
             pathRewrite: { 
               '/api': ''
             }
-          },
+          }
         }
     },
     // 基于环境有条件地配置行为

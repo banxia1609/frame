@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import { Button } from 'element-ui';
 import './utils/global'
-
+import '../mock'
 Vue.use(Button)
 
 Vue.config.productionTip = false

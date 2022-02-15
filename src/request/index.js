@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_URL, 
+  baseURL: process.env.VUE_APP_MOCK || process.env.VUE_APP_BASE_URL, // 检测mock环境还是本地环境
   timeout: 10000, // request timeout
 })
 
@@ -20,6 +20,8 @@ service.interceptors.request.use(config => {
 // 响应拦截器
 service.interceptors.response.use(
   (response) => {
+    console.log(response, 'response')
+
     const res = response.data
     //届时根据后端返回success或者code值判断
     if (res.success === true) {
